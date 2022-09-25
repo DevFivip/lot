@@ -23,7 +23,7 @@ const socketio = require('socket.io');
 const { DefaultDeserializer } = require('v8');
 const io = socketio(servidor, {
     cors: {
-        origin: "http://192.168.2.3:5173",
+        origin: "https://lottoplus.plus",
         methods: ["GET", "POST", "OPTIONS"],
         allowedHeaders: ["my-custom-header"],
         credentials: true
