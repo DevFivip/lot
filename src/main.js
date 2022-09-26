@@ -11,7 +11,7 @@ const { Register } = require('../app/models');
 
 
 var corsOptions = {
-    origin: 'https://lottoplus.plus, https://lotto.fivipsystem.com',
+    origin: 'https://lottoplus.plus',
     optionsSuccessStatus: 200 // For legacy browser support
 }
 
