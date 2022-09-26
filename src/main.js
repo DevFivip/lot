@@ -9,8 +9,15 @@ const horarios = require('../utils/horarios.json')
 
 const { Register } = require('../app/models');
 
+
+var corsOptions = {
+    origin: 'https://lottoplus.plus, https://lotto.fivipsystem.com',
+    optionsSuccessStatus: 200 // For legacy browser support
+}
+
 /** MIDDLEWARE */
-app.use(cors());
+app.use(cors(corsOptions));
+// app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -20,12 +27,11 @@ app.use(bodyParser.json());
 const servidor = http.createServer(app);
 
 const socketio = require('socket.io');
-const { DefaultDeserializer } = require('v8');
 const io = socketio(servidor, {
     cors: {
         origin: "https://lottoplus.plus",
         methods: ["GET", "POST", "OPTIONS"],
-        allowedHeaders: ["my-custom-header"],
+        allowedHeaders: ["production-access"],
         credentials: true
     }
 })
@@ -71,7 +77,7 @@ app.post('/register-lotto-valid', async (req, res) => {
 
     const Registe = await Register.create(animalito)
 
-    io.emit('resultado', { numero_resultado })
+    io.emit('resultado', { Registe, numero_resultado })
 
     res.json(Registe);
 });
@@ -116,4 +122,4 @@ app.post('/history', async (req, res) => {
 
 
 
-servidor.listen(3006, '0.0.0.0', () => console.log('server socket listener on port 3006 '))
+servidor.listen(3006, () => console.log('server socket listener on port 3006 '))
