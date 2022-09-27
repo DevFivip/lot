@@ -17,8 +17,8 @@ var corsOptions = {
 }
 
 /** MIDDLEWARE */
-app.use(cors(corsOptions));
-// app.use(cors());
+//app.use(cors(corsOptions));
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -89,13 +89,36 @@ app.post('/history', async (req, res) => {
 
     let date = null;
 
+
+
+    // const format1 = "YYYY-MM-DD HH:mm:ss"
+
+    // var date1 = new Date("2020-06-24 22:57:36");
+
+
+    // dateTime1 = moment(date1).format(format1);
+
+
+
+    // console.log({ dateTime2 })
+
+
+
     if (!req.body.fecha) {
-        let dateNow = new Date().toLocaleString({ timeZone: "America/Caracas" }).split('T')[0];
-        dateNow = dateNow.split(" ")
-        rev = dateNow[0].split("/").reverse().join("-");
-        // console.log({ dateNow })
-        // console.log({ rev })
-        date = new Date(rev);
+
+        const format2 = "YYYY-MM-DD"
+        var date2 = new Date();
+        datex = moment(date2).tz("America/Caracas").format(format2);
+
+        date = new Date(datex);
+
+
+        // let dateNow = new Date().toLocaleString({ timeZone: "America/Caracas" }).split('T')[0];
+        // dateNow = dateNow.split(" ")
+        // rev = dateNow[0].split("/").reverse().join("-");
+        // // console.log({ dateNow })
+        // // console.log({ rev })
+        // date = new Date(rev);
         // console.log({ date })
     } else {
         date = new Date(req.body.fecha);
