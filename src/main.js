@@ -54,7 +54,14 @@ io.on('connection', socket => {
 
 /**ROUTES */
 app.get('/', (req, res) => {
-    res.send(new Date());
+    dd = new Date().toLocaleString({ timeZone: "America/Caracas" })
+
+    console.log(dd)
+    fecha = dd.split(" ");
+
+    ddd = fecha[0].split("/").reverse().join("-")
+    res.send(ddd)
+    // new Date());
 });
 
 app.post('/register-lotto-valid', async (req, res) => {
@@ -87,11 +94,21 @@ app.post('/history', async (req, res) => {
 
     let date = null;
     if (!req.body.fecha) {
-        date = new Date();
-        // console.log(date,date.toDateString())
+        let dateNow = new Date().toLocaleString({ timeZone: "America/Caracas" }).split('T')[0];
+        dateNow = dateNow.split(" ")
+        rev = dateNow[0].split("/").reverse().join("-");
+        // console.log({ dateNow })
+        // console.log({ rev })
+        date = new Date(rev);
+        // console.log({ date })
     } else {
         date = new Date(req.body.fecha);
+        // console.log({ date })
     }
+
+
+    // res.send(date)
+    // console.log(date.toISOString());
 
     const startedDate = new Date(date.toISOString().split('T')[0]);
     const today = new Date(date.toISOString().split('T')[0]);
