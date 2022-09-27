@@ -159,60 +159,60 @@ app.post('/history', async (req, res) => {
 });
 /**END ROUTES */
 
-// app.get("/loop", async (req, res) => {
+//  app.get("/loop", async (req, res) => {
 
-//     const currentMoment = moment().subtract(180, 'days');
-//     const endMoment = moment().add(2, 'days');
+//      const currentMoment = moment().subtract(1460, 'days');
+//      const endMoment = moment().add(1, 'days');
 
-//     const schedule = [
-//         "08 AM",
-//         "09 AM",
-//         "10 AM",
-//         "11 AM",
-//         "12 AM",
-//         "01 PM",
-//         "02 PM",
-//         "03 PM",
-//         "04 PM",
-//         "05 PM",
-//         "06 PM",
-//         "07 PM",
-//         "08 PM",
-//     ]
+//      const schedule = [
+//          "08 AM",
+//          "09 AM",
+//          "10 AM",
+//          "11 AM",
+//          "12 PM",
+//          "01 PM",
+//          "02 PM",
+//          "03 PM",
+//          "04 PM",
+//          "05 PM",
+//          "06 PM",
+//          "07 PM",
+//          "08 PM",
+//      ]
 
 
 
-//     while (currentMoment.isBefore(endMoment, 'day')) {
-//         console.log(`Loop at ${currentMoment.format('YYYY-MM-DD')}`);
+//      while (currentMoment.isBefore(endMoment, 'day')) {
+//          console.log(`Loop at ${currentMoment.format('YYYY-MM-DD')}`);
 
-//         for (let i = 0; i < schedule.length; i++) {
-//             const hora = schedule[i]
+//          for (let i = 0; i < schedule.length; i++) {
+//              const hora = schedule[i]
 
-//             const  ram = getRandomInt(38);
-//             _animalito =  animalitos[ram]
-//             animalito = {}
-//             animalito.name = _animalito.name
-//             animalito.number = _animalito.option
-//             animalito.schedule = hora
-//             animalito.createdAt = currentMoment.format('YYYY-MM-DD')
-//             animalito.updatedAt = currentMoment.format('YYYY-MM-DD')
+//              const  ram = getRandomInt(38);
+//              _animalito =  animalitos[ram]
+//              animalito = {}
+//              animalito.name = _animalito.name
+//              animalito.number = _animalito.option
+//              animalito.schedule = hora
+//              animalito.createdAt = currentMoment.format('YYYY-MM-DD')
+//              animalito.updatedAt = currentMoment.format('YYYY-MM-DD')
             
-//             const reg = await Register.create(animalito)
+//              const reg = await Register.create(animalito)
 
 
-//         }   
-
-
-
-
-//         currentMoment.add(1, 'days');
-//     }
+//          }   
 
 
 
-//     res.send("success");
 
-// });
+//          currentMoment.add(1, 'days');
+//      }
+
+
+
+//      res.send("success");
+
+//  });
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
