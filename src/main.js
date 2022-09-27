@@ -1,4 +1,5 @@
 const express = require('express');
+const moment = require('moment-timezone');
 const cors = require("cors");
 const http = require('http');
 const app = express();
@@ -54,14 +55,10 @@ io.on('connection', socket => {
 
 /**ROUTES */
 app.get('/', (req, res) => {
-    dd = new Date().toLocaleString({ timeZone: "America/Caracas" })
 
-    console.log(dd)
-    fecha = dd.split(" ");
+    ddd = moment().tz("America/Caracas").format();
 
-    ddd = fecha[0].split("/").reverse().join("-")
     res.send(ddd)
-    // new Date());
 });
 
 app.post('/register-lotto-valid', async (req, res) => {
@@ -80,8 +77,6 @@ app.post('/register-lotto-valid', async (req, res) => {
 
     const numero_resultado = fund
 
-    console.log({ numero_resultado })
-
     const Registe = await Register.create(animalito)
 
     io.emit('resultado', { Registe, numero_resultado })
@@ -93,6 +88,7 @@ app.post('/register-lotto-valid', async (req, res) => {
 app.post('/history', async (req, res) => {
 
     let date = null;
+
     if (!req.body.fecha) {
         let dateNow = new Date().toLocaleString({ timeZone: "America/Caracas" }).split('T')[0];
         dateNow = dateNow.split(" ")
@@ -107,16 +103,20 @@ app.post('/history', async (req, res) => {
     }
 
 
-    // res.send(date)
+    // res.json({date})
+
     // console.log(date.toISOString());
 
-    const startedDate = new Date(date.toISOString().split('T')[0]);
-    const today = new Date(date.toISOString().split('T')[0]);
+    const startedDate = new Date(date.toISOString().split('T')[0] + ' 00:00:00');
+    const today = new Date(date.toISOString().split('T')[0] + " 00:00:00");
+
+
 
     //days
     // let today = new Date();
     let end = today.setHours(today.getHours() + 23);
     let endDate = new Date(end);
+    // res.send({endDate})
     console.log(startedDate, endDate)
 
     // const register = await Register.findAll({
