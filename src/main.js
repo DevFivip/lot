@@ -85,6 +85,17 @@ app.post('/register-lotto-valid', async (req, res) => {
 });
 
 
+app.post('/last-result', async (req, res) => {
+
+    const last = await Register.findOne({
+        order: [['id', 'DESC']],
+    });
+
+    res.json(last)
+
+
+})
+
 app.post('/history', async (req, res) => {
 
     let date = null;
@@ -196,7 +207,7 @@ app.post('/history', async (req, res) => {
 //              animalito.schedule = hora
 //              animalito.createdAt = currentMoment.format('YYYY-MM-DD')
 //              animalito.updatedAt = currentMoment.format('YYYY-MM-DD')
-            
+
 //              const reg = await Register.create(animalito)
 
 
@@ -216,6 +227,6 @@ app.post('/history', async (req, res) => {
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
-  }
+}
 
 servidor.listen(3006, () => console.log('server socket listener on port 3006 '))
