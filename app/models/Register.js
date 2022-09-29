@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
         name: DataTypes.STRING,
         number: DataTypes.STRING,
         schedule: DataTypes.STRING,
+        createDate: DataTypes.STRING,
     });
 
     return Register;
