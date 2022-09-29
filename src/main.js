@@ -86,14 +86,10 @@ app.post('/register-lotto-valid', async (req, res) => {
 
 
 app.post('/last-result', async (req, res) => {
-
     const last = await Register.findOne({
         order: [['id', 'DESC']],
     });
-
     res.json(last)
-
-
 })
 
 app.post('/history', async (req, res) => {
